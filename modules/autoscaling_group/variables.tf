@@ -1,3 +1,7 @@
+variable "count" {
+  description = "Whether to create auto scaling group"
+}
+
 variable "name" {
   description = "The name of the auto scaling group"
 }

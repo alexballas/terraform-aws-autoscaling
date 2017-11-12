@@ -1,14 +1,9 @@
-# Existing launch configuration
-variable "existing_launch_configuration" {
-  description = "Name of existing launch configuration to use. If empty new launch configuration will be created"
-  default     = ""
-}
-
-# Launch configuration
-variable "lc_name" {
+# Generic configuration
+variable "name" {
   description = "Creates a unique name beginning with the specified prefix"
 }
 
+# Launch configuration
 variable "image_id" {
   description = "The EC2 image ID to launch"
 }
@@ -81,10 +76,6 @@ variable "placement_tenancy" {
 }
 
 # Autoscaling group
-variable "asg_name" {
-  description = "The name of the auto scaling group"
-}
-
 variable "max_size" {
   description = "The maximum size of the auto scale group"
 }
@@ -191,4 +182,9 @@ variable "wait_for_elb_capacity" {
 variable "protect_from_scale_in" {
   description = "Allows setting instance protection. The autoscaling group will not select instances with this setting for terminination during scale in events."
   default     = false
+}
+
+variable "enabled" {
+  description = "Setting this to 0 will disable ASG and LC"
+  default     = 1
 }

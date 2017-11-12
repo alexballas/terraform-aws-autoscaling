@@ -4,9 +4,9 @@
 module "launch_configuration" {
   source = "./modules/launch_configuration"
 
-  count = "${var.existing_launch_configuration != "" ? 0 : 1}"
+  count = "${var.enabled == 0 ? 0 : 1}"
 
-  name                        = "${var.lc_name}"
+  name                        = "${var.name}"
   image_id                    = "${var.image_id}"
   instance_type               = "${var.instance_type}"
   iam_instance_profile        = "${var.iam_instance_profile}"
@@ -30,8 +30,10 @@ module "launch_configuration" {
 module "autoscaling_group" {
   source = "./modules/autoscaling_group"
 
-  name                 = "${var.asg_name}"
-  launch_configuration = "${var.existing_launch_configuration != "" ? var.existing_launch_configuration : module.launch_configuration.this_launch_configuration_id}"
+  count = "${var.enabled == 0 ? 0 : 1}"
+
+  name                 = "asg-${module.launch_configuration.this_launch_configuration_name}"
+  launch_configuration = "${module.launch_configuration.this_launch_configuration_id}"
   vpc_zone_identifier  = ["${var.vpc_zone_identifier}"]
 
   max_size         = "${var.max_size}"

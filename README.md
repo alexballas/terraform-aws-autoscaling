@@ -20,8 +20,9 @@ Usage
 module "asg" {
   source = "terraform-aws-modules/autoscaling/aws"
 
+  name = "example-asglc"
+
   # Launch configuration
-  lc_name = "example-lc"
 
   image_id        = "ami-ebd02392"
   instance_type   = "t2.micro"
@@ -44,7 +45,6 @@ module "asg" {
   ]
 
   # Auto scaling group
-  asg_name                  = "example-asg"
   vpc_zone_identifier       = ["subnet-1235678", "subnet-87654321"]
   health_check_type         = "EC2"
   min_size                  = 0

@@ -1,7 +1,7 @@
 # Launch configuration
 output "this_launch_configuration_id" {
   description = "The ID of the launch configuration"
-  value       = "${var.existing_launch_configuration != "" ? var.existing_launch_configuration : module.launch_configuration.this_launch_configuration_id}"
+  value       = "${module.launch_configuration.this_launch_configuration_id}"
 }
 
 # Autoscaling group

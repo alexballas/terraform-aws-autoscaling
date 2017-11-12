@@ -2,7 +2,9 @@
 # Autoscaling group
 ####################
 resource "aws_autoscaling_group" "this" {
-  name_prefix = "${var.name}-"
+  name = "${var.name}"
+
+  count = "${var.count}"
 
   launch_configuration = "${var.launch_configuration}"
   vpc_zone_identifier  = ["${var.vpc_zone_identifier}"]

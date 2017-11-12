@@ -46,9 +46,7 @@ module "example" {
 
   # Launch configuration
   #
-  # Uncomment the value below and provide value of existing launch configuration to use it instead of making new one
-  # existing_launch_configuration = "aa"
-  lc_name = "example-lc"
+  name = "example-asglc"
 
   image_id        = "${data.aws_ami.amazon_linux.id}"
   instance_type   = "t2.micro"
@@ -71,7 +69,6 @@ module "example" {
   ]
 
   # Auto scaling group
-  asg_name                  = "example-asg"
   vpc_zone_identifier       = ["${data.aws_subnet_ids.all.ids}"]
   health_check_type         = "EC2"
   min_size                  = 0
